@@ -1,7 +1,8 @@
 The KBase API
 =============
 
-(c) 2013 The DOE Systems Biology Knowledgebase Project
+http://kbase.us
+Copyright (c) 2013 The DOE Systems Biology Knowledgebase Project
 
 Distribution
 ------------
