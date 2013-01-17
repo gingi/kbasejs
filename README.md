@@ -8,4 +8,4 @@ Distribution
 ------------
 
     npm install
-    ./node_modules/uglify-js/bin/uglifyjs -c -m --comments < kbase.js > ./kbase.min.js
+    make
