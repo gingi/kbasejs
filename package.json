@@ -1,0 +1,21 @@
+{
+    "dependencies": {
+        "uglify-js"  : ">=2.2.3"
+    }, 
+    "name": "kbase",
+    "description": "The KBase API",
+    "config": {
+        "publishtest": false
+    },
+    "homepage": "http://kbase.us",
+    "author": "Shiran Pasternak <shiran@cshl.edu>",
+    "main": "./kbase.js",
+    "private": false, 
+    "version": "0.0.1",
+    "licenses": [
+        {
+          "type": "MIT +no-false-attribs",
+          "url": "http://kbase.us"
+        }
+    ]
+}
