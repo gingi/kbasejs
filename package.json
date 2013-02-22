@@ -1,12 +1,14 @@
 {
     "dependencies": {
-        "uglify-js"  : ">=2.2.3"
+        "jquery"     : ">=1.8.3"
+    },
+    "devDependencies": {
+        "uglify-js"  : ">=2.2.3",
+        "mocha"      : ">=1.8.1",
+        "should"     : ">=1.2.1"
     }, 
     "name": "kbase",
     "description": "The KBase API",
-    "config": {
-        "publishtest": false
-    },
     "homepage": "http://kbase.us",
     "author": "Shiran Pasternak <shiran@cshl.edu>",
     "main": "./kbase.js",
