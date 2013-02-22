@@ -12,8 +12,9 @@
     "homepage": "http://kbase.us",
     "author": "Shiran Pasternak <shiran@cshl.edu>",
     "main": "./kbase.js",
+    "scripts": { "preinstall": "make" },
     "private": false, 
-    "version": "0.0.1",
+    "version": "1.0.0",
     "licenses": [
         {
           "type": "MIT +no-false-attribs",
