@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>KBase JavaScript Examples</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le styles -->
+    <link href="./bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="./bootstrap-responsive.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand">KBase</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <h1>KBase JavaScript Examples</h1>
+      <p>Examples using the KBase JavaScript libraries</p>
+      <div class="row-fluid">
+          <div class="span4">
+              <h2>Genomes</h2>
+              <p>Get available genomes in KBase. The simplest usage with one
+                  API call.</p>
+              <p><a class="btn" href="genomes.html">Launch</a></p>
+          </div>
+          <div class="span4">
+              <h2>Contig lengths</h2>
+              <p>Get contigs lengths for a selected genome. Use of <a href="http://en.wikipedia.org/wiki/Futures_and_promises">promises</a> to chain two API calls together.</p>
+              <p><a class="btn" href="contig-lengths.html">Launch</a></p>
+          </div>
+      </div>
+    </div>
+
+  </body>
+</html>

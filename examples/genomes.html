@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+    <title>JavaScript Examples - Genomes</title>
+    <link href="./bootstrap.css" rel="stylesheet">
+    <link href="./bootstrap-responsive.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="./kbase.min.js"></script>
+    <script>
+    $(function () {
+        // Instantiate API with the service URL:
+        var api = new CDMI_EntityAPI('http://kbase.us/services/cdmi_api');
+        
+        // Make API call:
+        api.all_entities_Genome(
+            0,                                 // First genome index
+            100,                               // Number of genomes
+            ['source_id', 'scientific_name'],  // Return fields
+            // Success callback
+            function (genomes) {
+                for (var id in genomes) {
+                    $("#container").append($("<li>")
+                        .html("<strong>" + id + "</strong>: " +
+                            "<em>" + genomes[id].scientific_name + "</em>"
+                    ))
+                }
+            },
+            // Error callback
+            function (err) {
+                $("#container").append($("<div>").addClass("alert")
+                    .html(err.error));
+            }
+        );
+    })
+    </script>
+</head>
+<body>
+    <div id="container" class="container">
+        <h1>Genomes</h1>
+        <p>The following is a list of the first 100 genomes in KBase:</p>
+    </div>
+</body>

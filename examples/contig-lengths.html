@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+    <title>JavaScript Examples - Contig Lengths</title>
+    <link href="./bootstrap.css" rel="stylesheet">
+    <link href="./bootstrap-responsive.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="./kbase.min.js"></script>
+    <script>
+    $(function () {
+        var genomeId  = 'kb|g.3899'; // User input or whatever;
+        var cdmiAPI   = new CDMI_API('http://kbase.us/services/cdmi_api');
+        var entityAPI = new CDMI_EntityAPI('http://kbase.us/services/cdmi_api');
+        
+        // http://kbase.us/developer-zone/api-documentation/cdmi-entity-api/#all_entities_Genome
+        entityAPI.all_entities_Genome(0, 300, ['source_id', 'scientific_name'],
+        function (genomes) {
+            var select = $("<select>");
+            
+            for (var id in genomes) {
+                select.append($("<option>", { value: id })
+                    .text(genomes[id].scientific_name));
+            }
+            $("#container").append(select);
+            select.click(function (evt) {
+                var genomeId = $(evt.target).val();
+                loadContigs(genomeId);
+            });
+            $("#container").append($("<div>", { id: "lengths" }));
+        }, apiErrorHandler);
+
+        function loadContigs(genomeId) {
+            // http://kbase.us/developer-zone/api-documentation/cdmi-entity-api/#get_relationship_IsComposedOf
+            entityAPI.get_relationship_IsComposedOf(
+                [ genomeId ],       // The input values
+                ['id'],             // Input field names
+                [],                 // Relation fields
+                ['id', 'source_id'] // Output fields: KBase ID, Name
+            ).done(function (contigs) {
+                var ids = [];
+                var names = {};
+                contigs.forEach(function(c) {
+                    var id = c[2].id;
+                    var name = c[2].source_id;
+                    ids.push(id);
+                    names[id] = name;
+                });
+                // http://kbase.us/developer-zone/api-documentation/cdmi-api/#contigs_to_lengths
+                cdmiAPI.contigs_to_lengths(ids, function (lengths) {
+                    $("#lengths").empty();
+                    for (var id in lengths) {
+                        $("#lengths").append($("<li>")
+                            .html("<strong>" + names[id] + "</strong>: " +
+                                lengths[id] + " nt"));
+                    }
+                }, apiErrorHandler);
+            })
+            .fail(apiErrorHandler);
+        }
+        
+        // API error handler
+        function apiErrorHandler(err) {
+            $("#container").append($("<div>").addClass("alert")
+                .html(err.error));
+        }
+    })
+    </script>
+</head>
+<body>
+    <div id="container" class="container">
+        <h1>Contig Lengths</h1>
+        <p>Please select a genome:</p>
+    </div>
+</body>
