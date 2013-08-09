@@ -12,8 +12,8 @@ uglify:
 	@ rm -f uglify.out
 	@ $(UGLIFY) -c -m --comments < $(KBLIB) > $(KBLIBMIN) 2> uglify.out
 	@ echo "Uglified with "$(shell grep -c '^WARN' uglify.out)" warnings."
-	
+
 test:
 	@ $(MOCHA) $(MOCHAOPTS)
-	
+
 .PHONY: uglify test all
